@@ -256,11 +256,11 @@ command! W w
 " ******************************************************************************
 Plugin 'MarcWeber/vim-addon-mw-utils' "snipmate needs this
 Plugin 'tomtom/tlib_vim' "snipmate needs this
-Plugin 'garbas/vim-snipmate' " This works for macpro
+Plugin 'garbas/vim-snipmate' " This worked for macpro and ubuntu.
 set rtp+=~/.vim
-"let g:SnipMateExpandTrigger="<tab>"               " expandtrigger
-"let g:SnipMateJumpForwardTrigger="<tab>"          " advance to next tabstop
-"let g:SnipMateJumpBackwardTrigger="<s-tab>"       " reverse to previous tabstop
+let g:SnipMateExpandTrigger="<tab>"               " expandtrigger
+let g:SnipMateJumpForwardTrigger="<tab>"          " advance to next tabstop
+let g:SnipMateJumpBackwardTrigger="<s-tab>"       " reverse to previous tabstop
 
 
 
