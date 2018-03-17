@@ -1,1 +1,1 @@
-This folder is needed by Plugin `Snipmate`.
+This folder `~/.vim/snippets` is needed by Plugin `Snipmate`.
