@@ -5,3 +5,7 @@
 
 2) Install [Vundle](https://github.com/VundleVim/Vundle.vim).
 `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+
+3) For the swap file create `~/.vim/tmp`.
+
+4) For the color schemes create `~/.vim/colors` directory and put the color schemes here.
