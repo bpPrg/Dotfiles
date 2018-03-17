@@ -193,6 +193,7 @@ noremap <F8> :nohl<CR> "F8 to turn the search results highlight off
 inoremap <F8> <Esc>:nohl<CR>a
 noremap <F12> :set list!<CR> "F12 to toggle showing the non-printable charactes
 inoremap <F12> <Esc>:set list!<CR>a
+:nnoremap <CR> G " instead of 5gg to go to 5th line, now type 5 enter (G == Enter)
 
 
 
