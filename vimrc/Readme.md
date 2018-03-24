@@ -10,4 +10,8 @@
 
 4) For the backup create `mkdir ~/.vim/backups`.
 
-5) For the color schemes create `mkdir ~/.vim/colors` directory and put the color schemes here.
+5) For the color schemes create copy colors directory from this repo.
+
+6) For snippets copy snippets from this repo.
+
+7) To install plugins, `vi a.py` then, `:PluginInstall`.
