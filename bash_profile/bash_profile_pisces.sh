@@ -1,8 +1,41 @@
-   # Author  : Bhishan Poudel
+# Author  : Bhishan Poudel
 # Date    : Mar 18, 2016
 # File    : bash profile
 # source  : source ~/.bash_profile   # for mac
 
+##==============================================================================
+# Important
+##==============================================================================
+alias sb='source ~/.bash_profile'
+export PS1='\[\e[0;34m\]$(whoami)@${PWD/*\//}:' 
+alias rm="echo Use 'del', or the full path i.e. '/bin/rm'"
+function del () { mv  $@ ~/.Trash/; }
+function grepb() { 
+    clear; 
+    egrep -ni $1 ~/.bash_profile;
+    printf "\nNumber of lines: "
+    grep -c jedi ~/.bash_profile;
+    printf "PWD: $PWD\n";
+}
+function grepp() { 
+    clear; 
+    egrep -ni $@;
+    printf "\nNumber of lines: "
+    grep -c $@;
+    printf "PWD: $PWD\n";
+}
+
+
+
+
+
+
+##==============================================================================
+# grep
+##==============================================================================
+export GREP_OPTIONS='--color=always'
+export GREP_COLOR='1;33'
+alias grep='grep -ni --color=always'
 
 
 
@@ -23,10 +56,37 @@ MYCOMP=pisces  # $MYCOMP
 
 
 ##==============================================================================
+# Helios
+##==============================================================================
+alias sshh='ssh poudel@helios.phy.ohiou.edu'
+alias myblog='scp -r /Users/poudel/Dropbox/Website/public_html poudel@helios.phy.ohiou.edu:~/public_html'
+
+
+
+##==============================================================================
+# Diary
+##==============================================================================
+alias come="echo `date '+%Y-%b-%d:  Entry:  %I:%M:%S %p'` >> ~/Dropbox/Diary/office_log.txt"
+alias go="echo `date '+%Y-%b-%d:  Exit :  %I:%M:%S %p'` >> ~/Dropbox/Diary/office_log.txt"
+
+
+
+
+
+
+##==============================================================================
 # Research related temporary aliases
 ##==============================================================================
 alias cdsrc='clear; cd ~/Dropbox/Diary/jupyter/src'
 alias cdnotes='clear; cd ~/Dropbox/Diary/jupyter/notes'
+alias fortn='fortune | lolcat'
+alias runj='python run_jedisim.py -z 0.7 -c pisces -s 0 -e 0'
+alias runjedi='python run_jedisim.py -z 0.7 -c pisces -s 0 -e 0'
+
+
+
+
+
 
 
 ##==============================================================================
@@ -35,7 +95,8 @@ alias cdnotes='clear; cd ~/Dropbox/Diary/jupyter/notes'
 alias my23='for f in *.py; do 2to3 -w $f; done'
 alias my23d='for f in *.py; do 2to3 -w $f; done; rm -rf *.bak *.pyc'
 alias py='python'
-
+alias py3='python3'
+alias fr='clear; fortune | lolcat'
 
 
 
@@ -66,9 +127,9 @@ alias cdk='clear; cd ~/Desktop; ls; pwd'
 alias cdn='clear; cd ~/Downloads; ls; pwd'
 alias cdr='clear; cd ~/Research; ls; pwd'
 alias cdg='clear; cd ~/github; ls; pwd'
-alias cdtmp='clear; cd ~/tmp; ls; pwd'
+alias cdtmp='clear; cd ~/Temp; ls; pwd'
 alias cdo='clear; cd ~/OneDrive; ls; pwd'
-alias cdj='clear; cd ~/Research/a4_jedisim_v3.0/jedisim; ls; pwd'
+alias cdj='clear; cd ~/Research/a4_jedisim/jedisim; ls; pwd'
 alias cdscr='clear; cd ~/Dropbox/Screenshots; ls; pwd'
 alias cdgal='clear; cd ~/Research/galfit_usage; ls; pwd'
 alias cdi='clear; cd ~/Dropbox/Diary/sphinx/; ls; pwd'
@@ -96,29 +157,28 @@ alias ......='cd ../../../../../; ls; pwd'
 # Copy and Backup (.bash_profile is .bashrc in ubuntu)
 ##==============================================================================
 alias atomb='/Applications/Atom.app/Contents/MacOS/Atom ~/.bash_profile'
-alias cpb='cp -v ~/.bash_profile ~/Dropbox/latest/bash_profile_$MYCOMP.sh'
-alias cpv='cp -v ~/.vimrc ~/Dropbox/latest/vimrc_$MYCOMP.sh'
-alias cpbp='cp -v /usr/local/bin/bpp ~/Dropbox/latest/bpp_$MYCOMP.py'
-alias cpconfa='cp -v ~/.atom/snippets.cson ~/Dropbox/latest/atom_pisces_snippets.cson; cp -v ~/.atom/keymap.cson ~/Dropbox/latest/atom_pisces_keymap.cson; cp -v ~/.atom/init.coffee ~/Dropbox/latest/atom_pisces_init.coffee; cp -v ~/.atom/custom_entries.json ~/Dropbox/latest/atom_pisces_custom_entries.json;cp -v ~/.atom/custom_entries_bp.json ~/Dropbox/latest/atom_pisces_custom_entries_bp.json; apm list > ~/Dropbox/latest/apm_list_pisces.txt'
-alias cpconfv='cp -v ~/.vimrc ~/Dropbox/latest/vimrc_$MYCOMP.sh'
-alias cpconfg='cp -v ~/.config/geany/snippets.conf ~/Dropbox/latest/geany_snippets.conf_$MYCOMP.sh; echo "";cp -v ~/.config/geany/filedefs/filetypes.python  ~/Dropbox/latest/geany_filetypes.python_$MYCOMP.sh'
+alias cpb='cp -v ~/.bash_profile ~/Dropbox/Recent/bash/bash_profile_$MYCOMP.sh'
+alias cpv='cp -v ~/.vimrc ~/Dropbox/Recent/vim/vimrc_$MYCOMP.sh'
+alias cpbp='cp -v /usr/local/bin/bpp ~/Dropbox/Recent/bp/bpp_$MYCOMP.py'
+
+
 alias cppath='echo $PWD | pbcopy '
 alias cdpath='cd $(pbpaste)'
 alias cpw='echo $PWD | pbcopy'
 alias ppw='cd $(pbpaste)'
-alias cpj='cp -rv ~/Research/a4_jedisim_v3.0/jedisim/*.py ~/OneDrive/Jedisim_latest/ '
+
+alias cpconfa='clear; cp -v ~/.Atom/snippets.cson ~/Dropbox/Recent/atom/atom_pisces_snippets.cson;'\
+'cp -v ~/.Atom/init.coffee  ~/Dropbox/Recent//atom_pisces_init.coffee;'\
+'cp -v ~/.Atom/keymap.cson  ~/Dropbox/Recent/atom/atom_pisces_keymap.cson;'\
+'cp -v ~/.Atom/custom_entries_bhishan.json  ~/Dropbox/Recent/atom/atom_pisces_custom_entries_bhishan.json;'\
+'cp -v ~/.Atom/custom_entries.json  ~/Dropbox/Recent/atom/atom_pisces_custom_entries.json;'\
+'cp -v ~/.Atom/config.cson ~/Dropbox/Recent/atom/atom_pisces_config.cson; ls; pwd'
+alias cpconfv='clear; cp -v ~/.vimrc ~/Dropbox/Recent/vim/vimrc_pisces.txt; pwd'
+
+alias cpj='clear; cp -v ~/Research/a4_jedisim/jedisim/jedisim.py ~/Dropbox/Recent/jedisim/jedisim_pisces.py;'\
+'cp -v ~/Research/a4_jedisim/jedisim/run_jedisim.py ~/Dropbox/Recent/jedisim/run_jedisim_pisces.py; pwd'
 
 
-
-
-
-
-##==============================================================================
-## Prospectus (copy prospectus to good prospectus and dropbox both)
-##==============================================================================
-alias openpros='open ~/Dropbox/Prospectus/prospectus/prospectus.tex'
-alias cppros='cp -v ~/Dropbox/Prospectus/prospectus/prospectus.tex ~/Dropbox/latest/prospectus_$MYCOMP.tex; echo "";cp -v ~/Dropbox/Prospectus/prospectus/prospectus.tex ~/Dropbox/Prospectus/prospectus/good/prospectus_$MYCOMP.tex'
-alias clnpros='cd ~/Dropbox/Prospectus/prospectus/; rm -rv *.synctex.gz *.aux *.bbl *.blg *.lof *.log *.lot *.out *.toc; cd -'
 
 
 
@@ -144,19 +204,18 @@ function mpdf () {
 ## Open Programs (Ubuntu command is xdg-open)
 ##==============================================================================
 alias oepn='open'
-alias opena='geany ~/tmp/a.txt'
+alias opena='geany ~/Temp/a.txt'
 alias openb='open ~/.bash_profile'
 alias catb='cat ~/.bash_profile'
 alias vib='vim ~/.bash_profile'
 alias vig='vim .gitignore'
 alias opencron='open ~/bin/mycrontab.sh'
-alias openb2='open ~/Dropbox/latest/bashrc_mac.txt; open ~/Dropbox/latest/bashrc_linux.txt &'
-alias openmd='open ~/tmp/a.md'
+alias openmd='open ~/Temp/a.md'
 alias opentxt='open ~/temp/a.txt'
-alias openpy='open ~/tmp/a.py'
-alias openc='open ~/tmp/a.c'
+alias openpy='open ~/Temp/a.py'
+alias openc='open ~/Temp/a.c'
 alias jnb='jupyter-notebook'
-alias jnba='jupyter-notebook ~/tmp/a.ipynb'
+alias jnba='jupyter-notebook ~/Temp/a.ipynb'
 alias jnbd='jupyter-notebook ~/Dropbox/Diary/jupyter/diary_2017.ipynb'
 alias jnbml='cd /Users/poudel/Google\ Drive/2017_Summer/Machine_Learning/ML_Udemy; jupyter-notebook machine_learning.ipynb'
 alias openbp='geany /usr/local/bin/bpp'
@@ -488,8 +547,8 @@ alias spml='rm -r docs; spallf_no_open code/ ; spbr'
 ##==============================================================================
 # ssh and rsync
 ##==============================================================================
-alias ssha='ssh poudel@simplici.phy.ohiou.edu'
-alias sshb='ssh poudel@pisces.phy.ohiou.edu'
+alias sshs='ssh poudel@simplici.phy.ohiou.edu'
+alias sshp='ssh poudel@pisces.phy.ohiou.edu'
 alias sshc='ssh 64.247.73.201'
 alias rsync='rsync -azvu --progress '
 alias rsync2='rsync -azvu --progress '
@@ -527,7 +586,7 @@ alias which='type --all'
 ##==============================================================================
 # Personnal Aliases
 ##==============================================================================
-alias ss='source ~/.bash_profile'
+alias sb='source ~/.bash_profile; clear; ls; pwd'
 alias mkdir='mkdir -p'
 alias rmr='rm -rv'
 alias h='history'
@@ -726,31 +785,41 @@ function gall1 () {
     git push origin master
 }
 
+# Usage: upl hello.py
+function upl () {
+    cd ~/github/Everything;
+    git pull;
+    cd -;
+    cp $1 ~/github/Everything/Daily_Backup/$1;
+    cd ~/github/Everything/Daily_Backup;
+    git add $1;
+    git commit -m "`date +%Y-%b-%d`";
+    git push origin master;
+    cd - ;
+    clear;
+    ls;
+    pwd
+}
+
 # Upload all the files to github
-# command: upall
-# Result: upload all the files in the folder with message today's date
 function upall () {
-    cp *.txt /Users/poudel/github/Everything/
-    cp *.rst /Users/poudel/github/Everything/
-    cp *.py /Users/poudel/github/Everything/
-    cp *.sh /Users/poudel/github/Everything/
-    cp *.c /Users/poudel/github/Everything/
-    cd /Users/poudel/github/Everything/
+    cd ~/github/Everything;
+    git pull;
+    cd -;
+    cp *.py /Users/poudel/github/Everything/Daily_Backup/
+    cp *.sh /Users/poudel/github/Everything/Daily_Backup/
+    cp *.c /Users/poudel/github/Everything/Daily_Backup/
+    cd /Users/poudel/github/Everything/Daily_Backup/
     git add --all
     git commit -m "`date +%Y-%b-%d`"
     git push origin master
     cd -
 }
 
-# Upload a given file to github
-# Usage: upl hello.py
-function upl () {
-    cp $1 /Users/poudel/github/Everything/
-    cd /Users/poudel/github/Everything/
-    git add $1
-    git commit -m "`date +%Y-%b-%d`"
-    git push origin master
-    cd -
+# Git clone by repo name
+# Usage: gcll Shared
+function gcll () {
+    git clone git@github.com:bhishanpdl/$1.git
 }
 
 
@@ -808,7 +877,7 @@ alias kf='killall Finder'
 # poudel@two_component_fit$
 #PS1='\[\e[0;34m\]\W\[\e[0m\]\$ '
 #two_component_fit$
-PS1='\[\e[0;34m\]pisces:'
+# PS1='\[\e[0;34m\]pisces:'
 # BP: (in blue colors)
 
 
@@ -880,11 +949,6 @@ export LSCOLORS=dxcxexdxcxegedabagacad
 
 
 
-##==============================================================================
-## grep colors
-##==============================================================================
-alias grep='grep --color=always'
-
 
 
 #===============================================================================
@@ -901,6 +965,15 @@ export CC=gcc
 export ARCH=OSX
 export IMCATCONVERTNANS=
 export IMCATSWAPFITSBYTES=
+
+
+##==============================================================================
+##==============================================================================
+##==============================================================================
+## CMake is needed for DMStack
+##==============================================================================
+export PATH=/Applications/CMake.app/Contents/bin:$PATH
+
 
 
 ##==============================================================================
@@ -1013,9 +1086,6 @@ function bkp () {
 
 
 
-
-
-
 ##==============================================================================
 ## For pdf
 ##==============================================================================
@@ -1030,6 +1100,42 @@ function pdfextr() {
 
 
 
+# `o` with no arguments opens the current directory, otherwise opens the given
+# location
+function o() {
+  if [ $# -eq 0 ]; then
+    open .;
+  else
+    open "$@";
+  fi;
+}
+
+
+
+
+
+
+
+
+
+# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
+# the `.git` directory, listing directories first. The output gets piped into
+# `less` with options to preserve color and line numbers, unless the output is
+# small enough for one screen.
+function tre() {
+  tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+
+
+
+
+
+
+
+# Change working directory to the top-most Finder window location
+function cdf() { # short for `cdfinder`
+  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+}
 
 
 
@@ -1090,12 +1196,17 @@ mysongs() {
 # Sphinx needs python --version 3.6
 # Module gzip needs pyton3.6 from standard python3
 ##=======================================================================
+# function setpy2(){
+#     clear;
+#     echo 'export PATH="~/Library/Enthought/Canopy/edm/envs/User/bin:${PATH}"' >> ~/.bash_profile;
+#     source ~/.bash_profile
+#     echo "Setting PATH to pyton2.7.14"
+#     python --version
+# }
 function setpy2(){
     clear;
-    echo 'export PATH="~/Library/Enthought/Canopy/edm/envs/User/bin:${PATH}"' >> ~/.bash_profile;
-    source ~/.bash_profile
-    echo "Setting PATH to pyton2.7.14"
-    python --version
+    echo 'Open Canopy and open terminal from there';
+    python --version;
 }
 
 function setpy3(){
@@ -1107,3 +1218,12 @@ function setpy3(){
 
 # set path for python2 and python3
 export PATH="~/Library/Enthought/Canopy/edm/envs/User/bin:$PATH"
+export PATH="~/Library/Enthought/Canopy/edm/envs/User/bin:${PATH}"
+export PATH="~/Library/Enthought/Canopy/edm/envs/User/bin:${PATH}"
+
+# Setting PATH for Python 3.6
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH
+
+export PATH="/usr/bin:${PATH}"

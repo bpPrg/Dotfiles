@@ -47,17 +47,6 @@ alias lshidden='ls -ap | grep -v / | egrep "^\." '
 ##==============================================================================
 # Change Directory
 ##==============================================================================
-alias cdd='clear; cd ~/Dropbox; ls'
-alias cdn='clear; cd ~/Downloads; ls'
-alias cdr='clear; cd ~/Research; ls'
-alias cdg='cd ~/github; ls'
-alias cdgit='clear; cd ~/github; ls'
-alias cdtmp='clear; cd ~/Temp; ls'
-alias cdo='clear; cd ~/OneDrive; ls'
-alias cdscr='cd ~/Dropbox/Screenshots; ls'
-alias cdtips='clear; cd ~/OneDrive/Tips; ls'
-alias cdpros='clear; cd /Users/poudel/Dropbox/Prospectus/prospectus/ ; ls'
-
 alias .2='cd ../'
 alias .3='cd ../../'
 alias .4='cd ../../../'
@@ -145,6 +134,8 @@ alias rsync='rsync -azvu --progress '
 ##==============================================================================
 alias pyg='pygmentize'
 alias pcat="pygmentize -f terminal256 -O style=autumn -g" # native bad4 makefile
+alias ccat="pygmentize -g -O style=colorful,linenos=1" # native bad4 makefile
+
 
 
 
