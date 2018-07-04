@@ -5,8 +5,7 @@
 "
 " https://github.com/joelhooks/dotfiles/blob/master/.vim/vimrc
 " https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
-" https://github.com/honza/vim-snippets/blob/master/
-" https://github.com/j1z0/vim-config/blob/master/vimrc
+" https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/ 
 "
 " Brief help
 " so ~/.vimrc
@@ -41,31 +40,46 @@ call vundle#end()            " required
 " ******************************************************************************
 " =========================  Additional Plugins ================================
 " ******************************************************************************
-Plugin 'wakatime/vim-wakatime' " For wakatime
-Plugin 'yegappan/mru'   " most recently used files
-Plugin 'thinca/vim-quickrun'  " Run script inside vim
-Plugin 'terryma/vim-multiple-cursors' " Multiple cursor support
-Plugin 'tpope/vim-surround.git' " Surround string by quotes etc.
-Plugin 'scrooloose/nerdtree' " very nice file browser
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-Plugin 'godlygeek/tabular'  " The tabular plugin must come before vim-markdown.
-Plugin 'https://github.com/plasticboy/vim-markdown.git'
-Plugin 'tpope/vim-fugitive' " For github
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'} " Zen coding
-Plugin 'Lokaltog/vim-easymotion' " jump around documents
-Plugin 'L9' " prereq for FuzzyFinder
-Plugin 'FuzzyFinder'
-Plugin 'tmhedberg/SimpylFold' " Code folding
-Plugin 'kien/ctrlp.vim'  " path searching
-Plugin 'bronson/vim-visual-star-search'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'https://github.com/scrooloose/syntastic.git' " linting/error checking.
-Plugin 'tpope/vim-unimpaired'  " key combos for 'pairs' of things
-Plugin 'jtratner/vim-flavored-markdown'
-Plugin 'suan/vim-instant-markdown'
-Plugin 'nelstrom/vim-markdown-preview'
-Plugin 'ervandew/supertab'
+" When doing :PluginInstall on pisces all of these failed on  Mar 16, 2018.
+" so comment these plugins.
+" Plugin 'wakatime/vim-wakatime' " For wakatime
+" Plugin 'yegappan/mru'   " most recently used files
+" Plugin 'thinca/vim-quickrun'  " Run script inside vim
+" Plugin 'terryma/vim-multiple-cursors' " Multiple cursor support
+" Plugin 'tpope/vim-surround.git' " Surround string by quotes etc.
+" Plugin 'scrooloose/nerdtree' " very nice file browser
+" let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+" Plugin 'godlygeek/tabular'  " The tabular plugin must come before vim-markdown.
+" Plugin 'https://github.com/plasticboy/vim-markdown.git'
+" Plugin 'tpope/vim-fugitive' " For github
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'} " Zen coding
+" Plugin 'Lokaltog/vim-easymotion' " jump around documents
+" Plugin 'L9' " prereq for FuzzyFinder
+" Plugin 'FuzzyFinder'
+" Plugin 'kien/ctrlp.vim'  " path searching
+" Plugin 'bronson/vim-visual-star-search'
+" Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'https://github.com/scrooloose/syntastic.git' " linting/error checking.
+" Plugin 'tpope/vim-unimpaired'  " key combos for 'pairs' of things
+" Plugin 'tpope/vim-commentary'   " For commenting cmd / like in atom
+" noremap <leader>/ :Commentary<cr>  " For commenting cmd / like in atom
 
+
+
+
+
+
+" ******************************************************************************
+" ====================== Code snippets completion   ============================
+" ******************************************************************************
+" Note: download the folder snippet from garbas/vim-snipmate to ~/.vim/
+set rtp+=~/.vim
+Plugin 'MarcWeber/vim-addon-mw-utils'             " snipmate needs this
+Plugin 'tomtom/tlib_vim'                          " snipmate needs this
+Plugin 'garbas/vim-snipmate'                      " snipmate is good.
+let g:SnipmateExpandTrigger="<tab>"               " expandtrigger
+let g:SnipmateJumpForwardTrigger="<tab>"          " advance to next tabstop
+let g:SnipmateJumpBackwardTrigger="<s-tab>"       " reverse to previous tabstop
 
 
 
@@ -102,7 +116,6 @@ set confirm             " ask to save unchaged file
 set mouse=a             " Enable use of the mouse for all modes
 set backspace=2         " Make backspace work in insert mode
 set complete=.,w,b,u,U,t,i,d  " do lots of scanning on tab completion
-set noswapfile "I don't like swap files
 
 
 
@@ -115,7 +128,7 @@ set noswapfile "I don't like swap files
 filetype plugin indent on 
 set autoindent           " set the cursor at same indent as line above
 set smartindent      " try to be smart about indenting (C-style)
-set expandtab        " expand <Tab>s with spaces; death to tabs!
+"set expandtab        " replace tab by space, do not use this for makefile etc.
 set shiftwidth=4     " spaces for each step of (auto)indent
 set softtabstop=4    " set virtual tab stop (compat for 8-wide tabs)
 set tabstop=4        " for proper display of files with tabs
@@ -202,7 +215,6 @@ inoremap <F12> <Esc>:set list!<CR>a
 
 
 
-
 " ******************************************************************************
 " ============================== Wild Ignores ==================================
 " ******************************************************************************
@@ -248,21 +260,27 @@ command! W w
 
 
 
-
-
-
-
 " ******************************************************************************
-" ====================== Code snippets completion   ============================
+" ==================== Map keypad numbers use regular numbers  =================
 " ******************************************************************************
-Plugin 'MarcWeber/vim-addon-mw-utils' "snipmate needs this
-Plugin 'tomtom/tlib_vim' "snipmate needs this
-Plugin 'garbas/vim-snipmate' " This worked for macpro and ubuntu.
-set rtp+=~/.vim
-let g:SnipMateExpandTrigger="<tab>"               " expandtrigger
-let g:SnipMateJumpForwardTrigger="<tab>"          " advance to next tabstop
-let g:SnipMateJumpBackwardTrigger="<s-tab>"       " reverse to previous tabstop
-
+" https://apple.stackexchange.com/questions/201337/number-pad-does-not-work-in-vim-and-less
+" Also Disable Terminal > Preference > Red Sand (my default) > Advanced > allow VT100
+inoremap <Esc>Oq 1
+inoremap <Esc>Or 2
+inoremap <Esc>Os 3
+inoremap <Esc>Ot 4
+inoremap <Esc>Ou 5
+inoremap <Esc>Ov 6
+inoremap <Esc>Ow 7
+inoremap <Esc>Ox 8
+inoremap <Esc>Oy 9
+inoremap <Esc>Op 0
+inoremap <Esc>On .
+inoremap <Esc>OQ /
+inoremap <Esc>OR *
+inoremap <Esc>Ol +
+inoremap <Esc>OS -
+inoremap <Esc>OM <Enter>
 
 
 
@@ -272,52 +290,59 @@ let g:SnipMateJumpBackwardTrigger="<s-tab>"       " reverse to previous tabstop
 " ******************************************************************************
 " ========================== Split Navigation   ================================
 " ******************************************************************************
+" Ref:
+" http://vim.wikia.com/wiki/Easier_buffer_switching?li_source=LI&li_medium=wikia-footer-wiki-rec
 nnoremap <C-J> <C-W><C-J> " Ctrl-j move to the split below
 nnoremap <C-K> <C-W><C-K> " Ctrl-k move to the split above
 nnoremap <C-L> <C-W><C-L> " Ctrl-l move to the split to the right
 nnoremap <C-H> <C-W><C-H> " Ctrl-h move to the split to the left
+nnoremap <Tab> <c-w>w     " tab will go to next pane
+nnoremap <bs> <c-w>W      " backspace go to prev pane
+set wildchar=<Tab> wildmenu wildmode=full
+set wildcharm=<C-Z>
+nnoremap <F10> :b <C-Z>
+"
+" Usage:
+" :args vehicle.c vehicle.h car.c car.h jet.c jet.h jetcar.c jetcar.h
+" :b <Tab>       " offers all buffers in a menu
+" :b car<Tab>    " offers car.c car.h
+" :b *car<Tab>   " offers car.c jetcar.c car.h jetcar.h
+" :b .h<Tab>     " offers the *.h buffers
+" :b .c<Tab>     " offers the *.c buffers
+" :b ar.c<Tab>   " offers car.c jetcar.c
+" :b j*c<Tab>    " offers jet.c jetcar.c jetcar.h
+"
+"  Ref:
+"  http://vim.wikia.com/wiki/Easier_buffer_switching?li_source=LI&li_medium=wikia-footer-wiki-rec
+" Mappings to access buffers (don't use "\p" because a
+" delay before pressing "p" would accidentally paste).
+" \l       : list buffers
+" \b \f \g : go back/forward/last-used
+" \1 \2 \3 : go to buffer 1/2/3 etc
+nnoremap <Leader>l :ls<CR>
+nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>f :bn<CR>
+nnoremap <Leader>g :e#<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+" It's useful to show the buffer number in the status line.
+set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+
+
+
 
 " ******************************************************************************
-" ========================== Python PEP 8       ================================
+" ========================== Command-T open files   ============================
 " ******************************************************************************
-" Number of spaces that a pre-existing tab is equal to.
-au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
-
-"spaces for indents
-au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
-au BufRead,BufNewFile *.py,*.pyw set expandtab
-au BufRead,BufNewFile *.py set softtabstop=4
-
-" Use the below highlight group when displaying bad whitespace is desired.
-highlight BadWhitespace ctermbg=red guibg=red
-
-" Display tabs at the beginning of a line in Python mode as bad.
-au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
-" Make trailing whitespace be flagged as bad.
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-" Wrap text after a certain number of characters
-au BufRead,BufNewFile *.py,*.pyw, set textwidth=100
-
-" Use UNIX (\n) line endings.
-au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
-
-" Set the default file encoding to UTF-8:
-set encoding=utf-8
-
-" For full syntax highlighting:
-let python_highlight_all=1
-syntax on
-
-" Keep indentation level from previous line:
-autocmd FileType python set autoindent
-
-" make backspaces more powerfull
-set backspace=indent,eol,start
-
-
-"Folding based on indentation:
-autocmd FileType python set foldmethod=indent
-"use space to open folds
-nnoremap <space> za 
-"----------Stop python PEP 8 stuff--------------
+noremap <leader>o <Esc>:CommandT<CR>
+noremap <leader>O <Esc>:CommandTFlush<CR>
+noremap <leader>m <Esc>:CommandTBuffer<CR>
