@@ -40,26 +40,29 @@ call vundle#end()            " required
 " ******************************************************************************
 " =========================  Additional Plugins ================================
 " ******************************************************************************
-Plugin 'wakatime/vim-wakatime' " For wakatime
-Plugin 'yegappan/mru'   " most recently used files
-Plugin 'thinca/vim-quickrun'  " Run script inside vim
-Plugin 'terryma/vim-multiple-cursors' " Multiple cursor support
-Plugin 'tpope/vim-surround.git' " Surround string by quotes etc.
-Plugin 'scrooloose/nerdtree' " very nice file browser
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-Plugin 'godlygeek/tabular'  " The tabular plugin must come before vim-markdown.
-Plugin 'https://github.com/plasticboy/vim-markdown.git'
-Plugin 'tpope/vim-fugitive' " For github
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'} " Zen coding
-Plugin 'Lokaltog/vim-easymotion' " jump around documents
-Plugin 'L9' " prereq for FuzzyFinder
-Plugin 'FuzzyFinder'
-Plugin 'kien/ctrlp.vim'  " path searching
-Plugin 'bronson/vim-visual-star-search'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'https://github.com/scrooloose/syntastic.git' " linting/error checking.
-Plugin 'tpope/vim-unimpaired'  " key combos for 'pairs' of things
-
+" When doing :PluginInstall on pisces all of these failed on  Mar 16, 2018.
+" so comment these plugins.
+" Plugin 'wakatime/vim-wakatime' " For wakatime
+" Plugin 'yegappan/mru'   " most recently used files
+" Plugin 'thinca/vim-quickrun'  " Run script inside vim
+" Plugin 'terryma/vim-multiple-cursors' " Multiple cursor support
+" Plugin 'tpope/vim-surround.git' " Surround string by quotes etc.
+" Plugin 'scrooloose/nerdtree' " very nice file browser
+" let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+" Plugin 'godlygeek/tabular'  " The tabular plugin must come before vim-markdown.
+" Plugin 'https://github.com/plasticboy/vim-markdown.git'
+" Plugin 'tpope/vim-fugitive' " For github
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'} " Zen coding
+" Plugin 'Lokaltog/vim-easymotion' " jump around documents
+" Plugin 'L9' " prereq for FuzzyFinder
+" Plugin 'FuzzyFinder'
+" Plugin 'kien/ctrlp.vim'  " path searching
+" Plugin 'bronson/vim-visual-star-search'
+" Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'https://github.com/scrooloose/syntastic.git' " linting/error checking.
+" Plugin 'tpope/vim-unimpaired'  " key combos for 'pairs' of things
+" Plugin 'tpope/vim-commentary'   " For commenting cmd / like in atom
+" noremap <leader>/ :Commentary<cr>  " For commenting cmd / like in atom
 
 
 
@@ -287,13 +290,51 @@ inoremap <Esc>OM <Enter>
 " ******************************************************************************
 " ========================== Split Navigation   ================================
 " ******************************************************************************
+" Ref:
+" http://vim.wikia.com/wiki/Easier_buffer_switching?li_source=LI&li_medium=wikia-footer-wiki-rec
 nnoremap <C-J> <C-W><C-J> " Ctrl-j move to the split below
 nnoremap <C-K> <C-W><C-K> " Ctrl-k move to the split above
 nnoremap <C-L> <C-W><C-L> " Ctrl-l move to the split to the right
 nnoremap <C-H> <C-W><C-H> " Ctrl-h move to the split to the left
-
-
-
+nnoremap <Tab> <c-w>w     " tab will go to next pane
+nnoremap <bs> <c-w>W      " backspace go to prev pane
+set wildchar=<Tab> wildmenu wildmode=full
+set wildcharm=<C-Z>
+nnoremap <F10> :b <C-Z>
+"
+" Usage:
+" :args vehicle.c vehicle.h car.c car.h jet.c jet.h jetcar.c jetcar.h
+" :b <Tab>       " offers all buffers in a menu
+" :b car<Tab>    " offers car.c car.h
+" :b *car<Tab>   " offers car.c jetcar.c car.h jetcar.h
+" :b .h<Tab>     " offers the *.h buffers
+" :b .c<Tab>     " offers the *.c buffers
+" :b ar.c<Tab>   " offers car.c jetcar.c
+" :b j*c<Tab>    " offers jet.c jetcar.c jetcar.h
+"
+"  Ref:
+"  http://vim.wikia.com/wiki/Easier_buffer_switching?li_source=LI&li_medium=wikia-footer-wiki-rec
+" Mappings to access buffers (don't use "\p" because a
+" delay before pressing "p" would accidentally paste).
+" \l       : list buffers
+" \b \f \g : go back/forward/last-used
+" \1 \2 \3 : go to buffer 1/2/3 etc
+nnoremap <Leader>l :ls<CR>
+nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>f :bn<CR>
+nnoremap <Leader>g :e#<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+" It's useful to show the buffer number in the status line.
+set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 
 
